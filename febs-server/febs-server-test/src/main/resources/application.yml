@@ -1,0 +1,54 @@
+
+server:
+  port: 8202
+
+spring:
+  application:
+    name: FEBS-Server-Test
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration
+  #第三方服务spring boot admin 服务地址用户名密码
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    registry-fetch-interval-seconds: 3
+    serviceUrl:
+      defaultZone: http://febs:123456@localhost:8001/register/eureka/
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8301/auth/user
+  #到认证服务器里校验当前请求头中的令牌是否为合法的令牌；
+  #通过当前令牌获取对应的用户信息。
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  shareSecurityContext: true
+
+#第三方服务(包括名字，暴露监控点，即全部暴露给监控)
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

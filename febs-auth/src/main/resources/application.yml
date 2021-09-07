@@ -1,0 +1,78 @@
+server:
+  port: 8101
+
+spring:
+  application:
+    name: FEBS-Auth
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 8
+        max-idle: 500
+        max-active: 2000
+        max-wait: 10000
+    timeout: 5000
+  datasource:
+    dynamic:
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: 1800000
+        max-pool-size: 15
+        min-idle: 5
+        connection-test-query: select 1
+        pool-name: FebsHikariCP
+      primary: base
+      datasource:
+        base:
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/febs_cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+  #第三方服务spring boot admin 服务地址用户名密码
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    registry-fetch-interval-seconds: 3
+    serviceUrl:
+      defaultZone: http://febs:123456@localhost:8001/register/eureka/
+mybatis-plus:
+  type-aliases-package: cc.mrbird.febs.common.entity.system
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    jdbc-type-for-null: null
+  global-config:
+    banner: false
+#mybatis-plus.type-aliases-package，指定别名扫描路径，这个路径后续在febs-common模块里定义，
+#该路径下的实体类将自动配置别名，默认为类名首字母小写。配置别名后，便可以直接在MyBatis XML文件里使用了；
+#mybatis-plus.mapper-locations指定MyBatis XML文件路径；
+#mybatis-plus.configuration.jdbc-type-for-null，指定为null，否则再插入空值时会报“无效的列类型”错误；
+#mybatis-plus.configuration.global-config.banner设置为false关闭MyBatis Plus Banner打印
+
+#第三方服务(包括名字，暴露监控点，即全部暴露给监控)
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+

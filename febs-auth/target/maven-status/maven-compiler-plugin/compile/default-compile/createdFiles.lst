@@ -1,0 +1,16 @@
+cc\mrbird\febs\auth\filter\ValidateCodeFilter.class
+cc\mrbird\febs\auth\properties\FebsClientsProperties.class
+cc\mrbird\febs\auth\mapper\MenuMapper.class
+cc\mrbird\febs\auth\mapper\UserMapper.class
+cc\mrbird\febs\auth\handler\GlobalExceptionHandler.class
+cc\mrbird\febs\auth\controller\SecurityController.class
+cc\mrbird\febs\auth\configure\FebsAuthorizationServerConfigure.class
+cc\mrbird\febs\auth\configure\FebsSecurityConfigure.class
+cc\mrbird\febs\auth\properties\FebsAuthProperties.class
+cc\mrbird\febs\auth\properties\FebsValidateCodeProperties.class
+cc\mrbird\febs\auth\service\ValidateCodeService.class
+cc\mrbird\febs\auth\configure\FebsResourceServerConfigure.class
+cc\mrbird\febs\auth\manager\UserManager.class
+cc\mrbird\febs\auth\FebsAuthApplication.class
+cc\mrbird\febs\auth\translator\FebsWebResponseExceptionTranslator.class
+cc\mrbird\febs\auth\service\FebsUserDetailService.class

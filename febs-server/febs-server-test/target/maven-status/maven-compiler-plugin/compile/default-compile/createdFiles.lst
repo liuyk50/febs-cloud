@@ -1,0 +1,6 @@
+cc\mrbird\febs\server\test\controller\TestController.class
+cc\mrbird\febs\server\test\service\fallback\HelloServiceFallback.class
+cc\mrbird\febs\server\test\handler\GlobalExceptionHandler.class
+cc\mrbird\febs\server\test\service\IHelloService.class
+cc\mrbird\febs\server\test\FebsServerTestApplication.class
+cc\mrbird\febs\server\test\configure\FebsServerTestResourceServerConfigure.class

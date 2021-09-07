@@ -1,0 +1,6 @@
+D:\febs\febs-server\febs-server-test\src\main\java\cc\mrbird\febs\server\test\configure\FebsServerTestResourceServerConfigure.java
+D:\febs\febs-server\febs-server-test\src\main\java\cc\mrbird\febs\server\test\handler\GlobalExceptionHandler.java
+D:\febs\febs-server\febs-server-test\src\main\java\cc\mrbird\febs\server\test\controller\TestController.java
+D:\febs\febs-server\febs-server-test\src\main\java\cc\mrbird\febs\server\test\FebsServerTestApplication.java
+D:\febs\febs-server\febs-server-test\src\main\java\cc\mrbird\febs\server\test\service\IHelloService.java
+D:\febs\febs-server\febs-server-test\src\main\java\cc\mrbird\febs\server\test\service\fallback\HelloServiceFallback.java

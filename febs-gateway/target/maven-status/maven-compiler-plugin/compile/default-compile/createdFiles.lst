@@ -1,0 +1,8 @@
+cc\mrbird\febs\gateway\FebsGatewayApplication.class
+cc\mrbird\febs\gateway\properties\FebsGatewayProperties.class
+cc\mrbird\febs\gateway\configure\FebsGatewaySecurityConfigure.class
+cc\mrbird\febs\gateway\filter\FebsGatewayErrorFilter.class
+cc\mrbird\febs\gateway\fallback\FebsGatewayBlockFallbackProvider.class
+cc\mrbird\febs\gateway\configure\FebsGateWayCorsConfigure.class
+cc\mrbird\febs\gateway\filter\FebsGatewaySentinelFilter.class
+cc\mrbird\febs\gateway\filter\FebsGatewayRequestFilter.class

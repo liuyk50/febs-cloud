@@ -1,0 +1,15 @@
+cc\mrbird\febs\server\system\controller\UserController.class
+cc\mrbird\febs\server\system\properties\FebsServerSystemProperties.class
+cc\mrbird\febs\server\system\mapper\UserRoleMapper.class
+cc\mrbird\febs\server\system\configure\P6spySqlFormatConfigure.class
+cc\mrbird\febs\server\system\service\impl\UserServiceImpl.class
+cc\mrbird\febs\server\system\configure\FebsWebConfigure.class
+cc\mrbird\febs\server\system\controller\TestController.class
+cc\mrbird\febs\server\system\handler\GlobalExceptionHandler.class
+cc\mrbird\febs\server\system\configure\FebsServerSystemResourceServerConfigure.class
+cc\mrbird\febs\server\system\service\impl\UserRoleServiceImpl.class
+cc\mrbird\febs\server\system\FebsServerSystemApplication.class
+cc\mrbird\febs\server\system\mapper\UserMapper.class
+cc\mrbird\febs\server\system\properties\FebsSwaggerProperties.class
+cc\mrbird\febs\server\system\service\IUserRoleService.class
+cc\mrbird\febs\server\system\service\IUserService.class

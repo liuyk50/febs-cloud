@@ -1,0 +1,71 @@
+server:
+  port: 8201
+spring:
+  application:
+    name: FEBS-Server-System
+  datasource:
+    dynamic:
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: 1800000
+        max-pool-size: 15
+        min-idle: 5
+        connection-test-query: select 1
+        pool-name: FebsHikariCP
+      primary: base
+      datasource:
+        base:
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/febs_cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+      p6spy: true
+  #第三方服务spring boot admin 服务地址用户名密码
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+
+mybatis-plus:
+  type-aliases-package: cc.mrbird.febs.common.entity.system
+  mapper-locations: classpath:mapper/*/*.xml
+  configuration:
+    jdbc-type-for-null: null
+  global-config:
+    banner: false
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    serviceUrl:
+      defaultZone: http://febs:123456@localhost:8001/register/eureka/
+
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8301/auth/user
+
+  #到认证服务器里校验当前请求头中的令牌是否为合法的令牌；
+  #通过当前令牌获取对应的用户信息。
+
+#第三方服务(包括名字，暴露监控点，即全部暴露给监控)
+info:
+  app:
+    name: ${spring.application.name}
+    description: "FEBS-Server-System微服务系统模块"
+    version: "1.0-SNAPSHOT"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

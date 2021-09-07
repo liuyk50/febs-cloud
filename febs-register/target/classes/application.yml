@@ -1,0 +1,45 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /register
+spring:
+  application:
+    name: FEBS-Register
+  security:
+    user:
+      name: febs
+      password: 123456
+#第三方服务spring boot admin 服务地址用户名密码
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+
+eureka:
+  instance:
+    hostname: localhost
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    instance-info-replication-interval-seconds: 30
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/eureka/
+#第三方服务(包括名字，暴露监控点，即全部暴露给监控)
+info:
+  app:
+    name: ${spring.application.name}
+    description: "FEBS-Cloud服务注册中心"
+    version: "1.0-SNAPSHOT"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+

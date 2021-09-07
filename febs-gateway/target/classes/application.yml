@@ -1,0 +1,72 @@
+server:
+  port: 8301
+
+spring:
+  application:
+    name: FEBS-Gateway
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+#第三方服务spring boot admin 服务地址用户名密码
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    registry-fetch-interval-seconds: 3
+    serviceUrl:
+      defaultZone: http://febs:123456@localhost:8001/register/eureka/
+#eureka.instance.lease-renewal-interval-in-seconds，向Eureka 服务端发送心跳的间隔时间，单位为秒，用于服务续约
+#eureka.client.register-with-eureka，为true时表示将当前服务注册到Eureak服务端
+#eureka.client.fetch-registry，为true时表示从Eureka 服务端获取注册的服务信息
+zuul:
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: FEBS-Auth
+      sensitiveHeaders: "*"
+    system:
+      path: /system/**
+      serviceId: FEBS-Server-System
+      sensitiveHeaders: "*"
+    test:
+      path: /test/**
+      serviceId: FEBS-Server-Test
+      sensitiveHeaders: "*"
+  SendErrorFilter:
+    error:
+      disable: true
+#默认Zuul异常过滤器失效
+  retryable: true
+  ignored-services: "*"
+  ribbon:
+    eager-load:
+      enabled: true
+#sensitiveHeaders设置为*，表示不过滤请求头信息，即请求的请求头信息将原封不动的转发出去
+#zuul.ignored-services设置为*，表示关闭所有默认路由配置规则
+ribbon:
+  ReadTimeout: 3000
+#ribbon.ReadTimeout，设置请求超时时间，单位为毫秒；
+
+#第三方服务(包括名字，暴露监控点，即全部暴露给监控),健康指数
+info:
+  app:
+    name: ${spring.application.name}
+    description: "FEBS-Gateway微服务网关"
+    version: "1.0-SNAPSHOT"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
